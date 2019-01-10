@@ -9,9 +9,9 @@ public class Context extends Persistence{
 	private EntityManagerFactory entity = null;
 	
 	public static EntityManagerFactory getInstance() {
-		if(singleton == null)
+		if(singleton == null) {
 			singleton = Persistence.createEntityManagerFactory("JpaDbTest");
-		
+		}
 		return singleton;
 	}
 	
