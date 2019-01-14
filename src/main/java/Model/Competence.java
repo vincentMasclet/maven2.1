@@ -1,10 +1,15 @@
 package Model;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,6 +23,10 @@ public class Competence {
 	private Long id;
 	@Column(name = "nom_competence", length =150,nullable=false)
 	private String nom;
+	//@ManyToMany(mappedBy="competences")
+	//private List<Formateur> formateurs;
+	@OneToMany(mappedBy="key,competence")
+	private Set<Enseignement> enseignements;
 	
 	
 	// Constructeur 

@@ -9,5 +9,6 @@ import Model.Personne;
 public interface DaoPersonne extends DaoGeneric<Personne, Integer>{
 	public List<Formateur> findAllFormateur();
 	public List<Eleve> findAllEleve();
+	public Formateur findFormateurBYKey(Integer key);
 
 }

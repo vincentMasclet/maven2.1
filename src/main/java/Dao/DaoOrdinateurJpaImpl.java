@@ -75,11 +75,14 @@ class DaoOrdinateurJpaImpl implements DaoOrdianteur {
 	public void delete(Ordinateur obj) {
 		EntityManager em = Context.getInstance().createEntityManager();
 		EntityTransaction tx = null;
-		
+		Ordinateur ordinateur = null;
 		tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.merge(obj));
+			ordinateur = em.find(Ordinateur.class, obj.getCode());
+			if (ordinateur.getEleve()!=null)
+				ordinateur.getEleve().setOrdi(null);
+			em.remove(ordinateur);
 			tx.commit();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -96,11 +99,14 @@ class DaoOrdinateurJpaImpl implements DaoOrdianteur {
 	public void deleteByKey(String key) {
 		EntityManager em = Context.getInstance().createEntityManager();
 		EntityTransaction tx = null;
-		
+		Ordinateur ordinateur = null;
 		tx = em.getTransaction();
 		try {
 			tx.begin();
-			em.remove(em.find(Ordinateur.class, key));
+			ordinateur = em.find(Ordinateur.class, key);
+			if (ordinateur.getEleve()!=null)
+				ordinateur.getEleve().setOrdi(null);
+			em.remove(ordinateur);
 			tx.commit();
 		}catch(Exception e) {
 			e.printStackTrace();

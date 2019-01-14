@@ -129,4 +129,14 @@ class DaoPersonneJpaImpl implements DaoPersonne {
 		return eleves;
 	}
 
+	@Override
+	public Formateur findFormateurBYKey(Integer key) {
+		
+		EntityManager em = Context.getInstance().createEntityManager();
+		Formateur f = null;
+		f = em.find(Formateur.class, key);
+		em.close();
+		return f;
+	}
+
 }
